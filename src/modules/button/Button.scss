@@ -1,0 +1,22 @@
+button {
+  background-color: #d74f1b;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &[disabled] {
+    opacity: 0.6;
+  }
+
+  &:hover {
+    background-color: #c44717; // Slightly darker red on hover
+  }
+
+  &:active {
+    background-color: #a53c14; // Even darker red on click
+  }
+}
