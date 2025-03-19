@@ -1,0 +1,79 @@
+.card {
+  position: absolute;
+  width: 60px;
+  height: 90px;
+  transition: transform 0.2s ease;
+  perspective: 1000px;
+
+  @media (min-width: 769px) {
+    width: 100px;
+    height: 150px;
+  }
+
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+
+    .card-front,
+    .card-back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 8px;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #333;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      height: 100%;
+      background-color: white;
+      color: black;
+
+      .card-value {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1.2;
+
+        &.bottom {
+          top: auto;
+          left: auto;
+          bottom: 5px;
+          right: 5px;
+        }
+      }
+
+      .card-suit {
+        font-size: 60px;
+      }
+    }
+
+    .card-back {
+      background-color: #d74f1b;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes fly-card {
+  from {
+    transform: translate(var(--start-x), var(--start-y));
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
