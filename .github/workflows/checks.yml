@@ -26,11 +26,18 @@ jobs:
           corepack enable
           corepack prepare yarn@4.6.0 --activate
 
-      - name: 🏗️ Install Dependencies
-        run: yarn install --immutable
+      - name: 🔧 Install Dependencies (Including TypeScript)
+        run: |
+          yarn install --immutable
+          yarn add --dev typescript  # ✅ Explicitly install TypeScript
 
       - name: 🧪 Run Tests
-        run: yarn test
+        run: yarn test:coverage
+
+      - name: 📊 Upload Coverage Report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: 🏆 Build Project
         run: yarn build
