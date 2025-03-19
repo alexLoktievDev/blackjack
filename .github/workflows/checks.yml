@@ -30,12 +30,7 @@ jobs:
         run: yarn install --immutable
 
       - name: 🧪 Run Tests
-        run: yarn test:coverage
-
-      - name: 📊 Upload Coverage Report
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+        run: yarn test
 
       - name: 🏆 Build Project
         run: yarn build
