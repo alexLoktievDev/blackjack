@@ -1,0 +1,66 @@
+name: 🚀 CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ✅ Step 1: Checkout the repository
+      - name: 🛎️ Checkout repository
+        uses: actions/checkout@v4
+
+      # ✅ Step 2: Set up Node.js
+      - name: 🚀 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      # ✅ Step 3: Install Dependencies
+      - name: 📦 Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # ✅ Step 4: Linting
+      - name: 🧹 Lint code
+        run: yarn lint
+
+      # ✅ Step 5: TypeScript Checking
+      - name: 🛡️ TypeScript Type Check
+        run: yarn tsc --noEmit
+
+      # ✅ Step 6: Run Tests
+      - name: 🧪 Run Tests
+        run: yarn test
+
+      # ✅ Step 7: Build
+      - name: 🏗️ Build project
+        run: yarn build
+
+      # ✅ Step 8: Cache Dependencies (Optional)
+      - name: 🚀 Cache Yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # ✅ Step 9: ✅ Success Message
+      - name: ✅ Build Completed Successfully
+        if: success()
+        run: echo "🎉 Build and Tests Passed!"
+
+      # ✅ Step 10: ❌ Failure Message
+      - name: ❌ Build Failed
+        if: failure()
+        run: echo "💥 Build Failed! Please check logs for details."

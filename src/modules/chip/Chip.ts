@@ -1,8 +1,8 @@
 import './Chip.scss';
 
 export class Chip {
-  private element: HTMLDivElement;
-  private value: number;
+  readonly element: HTMLDivElement;
+  readonly value: number;
 
   constructor(
     value: number,
