@@ -1,6 +1,6 @@
 {
   "name": "blackjack",
-  "version": "1.17.5",
+  "version": "1.18.5",
   "private": true,
   "workspaces": [
     "modules/*",
