@@ -1,11 +1,15 @@
 export class UIElementFactory {
   static createElement(
     tag: keyof HTMLElementTagNameMap,
-    className: string,
+    className: string | undefined,
     text: string,
   ): HTMLElement {
     const el = document.createElement(tag);
-    el.classList.add(...className.split(' '));
+
+    if (className?.trim()) {
+      el.classList.add(...className.split(' '));
+    }
+
     el.textContent = text;
     return el;
   }
@@ -18,7 +22,7 @@ export class UIElementFactory {
 
   static createAndAppend(
     tag: keyof HTMLElementTagNameMap,
-    className: string,
+    className: string | undefined,
     text: string,
     parent?: HTMLElement,
   ): HTMLElement {
