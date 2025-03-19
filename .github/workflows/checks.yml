@@ -1,66 +1,41 @@
-name: 🚀 CI Pipeline
+name: CI
 
 on:
   push:
     branches:
       - main
-      - develop
   pull_request:
     branches:
       - main
-      - develop
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # ✅ Step 1: Checkout the repository
-      - name: 🛎️ Checkout repository
+      - name: 🚀 Checkout repository
         uses: actions/checkout@v4
 
-      # ✅ Step 2: Set up Node.js
-      - name: 🚀 Setup Node.js
+      - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'yarn'
+          node-version: 20
 
-      # ✅ Step 3: Install Dependencies
-      - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: 📦 Enable Corepack and set Yarn version
+        run: |
+          corepack enable
+          corepack prepare yarn@4.6.0 --activate
 
-      # ✅ Step 4: Linting
-      - name: 🧹 Lint code
-        run: yarn lint
+      - name: 🏗️ Install Dependencies
+        run: yarn install --immutable
 
-      # ✅ Step 5: TypeScript Checking
-      - name: 🛡️ TypeScript Type Check
-        run: yarn tsc --noEmit
-
-      # ✅ Step 6: Run Tests
       - name: 🧪 Run Tests
-        run: yarn test
+        run: yarn test:coverage
 
-      # ✅ Step 7: Build
-      - name: 🏗️ Build project
-        run: yarn build
-
-      # ✅ Step 8: Cache Dependencies (Optional)
-      - name: 🚀 Cache Yarn dependencies
-        uses: actions/cache@v4
+      - name: 📊 Upload Coverage Report
+        uses: codecov/codecov-action@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          token: ${{ secrets.CODECOV_TOKEN }}
 
-      # ✅ Step 9: ✅ Success Message
-      - name: ✅ Build Completed Successfully
-        if: success()
-        run: echo "🎉 Build and Tests Passed!"
-
-      # ✅ Step 10: ❌ Failure Message
-      - name: ❌ Build Failed
-        if: failure()
-        run: echo "💥 Build Failed! Please check logs for details."
+      - name: 🏆 Build Project
+        run: yarn build
