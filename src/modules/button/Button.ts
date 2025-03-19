@@ -7,7 +7,7 @@ export class Button {
   constructor(label: string, id: string, onClick: () => void) {
     this.element = UIElementFactory.createElement(
       'button',
-      id,
+      'button',
       label,
     ) as HTMLButtonElement;
     this.element.addEventListener('click', onClick);

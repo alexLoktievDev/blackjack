@@ -1,23 +1,18 @@
+@use '../../styles/mixins' as *;
+
 .player-seat-spot {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  @include circle(80px, rgba(255, 255, 255, 0.1));
+  @include text-style(14px, bold);
   color: white;
   text-align: center;
-  font-size: 14px;
-  font-weight: bold;
   border: 2px solid #f1ed53;
   cursor: pointer;
   user-select: none;
+  position: relative;
 
   .player-seat-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     height: 100%;
-    font-weight: bold;
     text-transform: uppercase;
   }
 
@@ -27,7 +22,7 @@
   }
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    @include hover-effect(rgba(255, 255, 255, 0.3));
   }
 }
 
@@ -35,9 +30,7 @@
 .balance-area {
   min-width: 60px;
   margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   height: 20px;
   background-color: black;
   color: white;
@@ -51,15 +44,11 @@
 }
 
 .balance-area {
-  left: 50%;
-  bottom: 11%;
+  @include absolute($bottom: 11%, $left: 50%, $translateX: true);
   padding: 4px 10px;
-  position: absolute;
   font-weight: bold;
-  transform: translateX(-50%);
 
   @media (min-width: 769px) {
-    left: 50%;
     bottom: 0;
   }
 
@@ -69,11 +58,9 @@
 }
 
 .player-seat-spot-inner {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: -25%;
+  @include absolute($top: 0, $left: -25%);
   transform: translateY(-80%);
+  display: flex;
 
   .card {
     position: relative;

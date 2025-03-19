@@ -34,10 +34,7 @@
   }
 
   .dealer-area {
-    position: absolute;
-    top: 13%;
-    left: 50%;
-    transform: translateX(-50%);
+    @include absolute(13%, 'auto', 'auto', 50%, -50%);
 
     @media (min-width: 769px) {
       top: 20%;
@@ -45,19 +42,14 @@
   }
 
   .player-seat-area {
-    position: absolute;
-    bottom: 28%;
-    left: 15%;
-    right: 0;
+    @include absolute('auto', 0, 28%, 15%);
+    @include flex-center();
     width: 70%;
     height: 150px;
-    display: flex;
     gap: 100px;
-    flex-direction: row;
-    justify-content: center;
 
     @media (min-width: 769px) {
-      bottom: 10%;
+      bottom: 12%;
     }
 
     &:nth-child(n + 6) {
@@ -68,13 +60,12 @@
       position: relative;
       transition: transform 0.2s ease;
 
-      // Shift each card to the left by half the width of the previous one
       &:nth-child(n) {
-        margin-left: -40px; // Half of 100px (card width)
+        margin-left: -40px;
       }
 
       &:first-child {
-        margin-left: 0; // First card stays in place
+        margin-left: 0;
       }
     }
   }

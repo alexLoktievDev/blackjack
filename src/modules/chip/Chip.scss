@@ -1,32 +1,28 @@
+@use '../../styles/mixins' as *;
+
 .chip {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  @include circle(40px, transparent);
+  @include flex-center();
   background: radial-gradient(
-    circle at 30% 30%,
-    #ffffff 5%,
-    #d74f1b 40%,
-    #b22222 60%
+                  circle at 30% 30%,
+                  #ffffff 5%,
+                  #d74f1b 40%,
+                  #b22222 60%
   );
   border: 3px solid #d4af37;
   box-shadow:
-    0 4px 0 #800000,
-    0 6px 10px rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 14px;
+          0 4px 0 #800000,
+          0 6px 10px rgba(0, 0, 0, 0.5);
+  @include text-style(14px, bold);
   color: white;
   text-shadow: 1px 1px 2px #000;
   cursor: pointer;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+          transform 0.2s,
+          box-shadow 0.2s;
 
   @media (min-width: 769px) {
-    width: 60px;
-    height: 60px;
+    @include circle(60px, transparent);
     font-size: 18px;
   }
 

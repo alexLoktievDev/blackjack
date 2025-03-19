@@ -5,29 +5,22 @@
   flex-direction: $direction;
 }
 
-// Create a circle with dynamic size and background color
 @mixin circle($size, $color) {
   width: $size;
   height: $size;
   background-color: $color;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-// Create a gradient background
 @mixin gradient-background($color1, $color2) {
   background: radial-gradient(circle, $color1, $color2);
 }
 
-// Create a text style with size and weight
 @mixin text-style($size, $weight) {
   font-size: $size;
   font-weight: $weight;
 }
 
-// Create a hover effect
 @mixin hover-effect($color) {
   transition: background-color 0.2s ease;
 
@@ -36,7 +29,6 @@
   }
 }
 
-// Create an absolute position with optional alignment
 @mixin absolute(
   $top: auto,
   $right: auto,
@@ -55,7 +47,6 @@
   }
 }
 
-// Inset shadow for depth
 @mixin inset-shadow {
   box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.5);
 }

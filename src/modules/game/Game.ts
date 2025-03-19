@@ -116,8 +116,7 @@ export class Game {
   }
 
   start(): void {
-    // TODO: uncomment
-    // this.audioManager.play();
+    this.audioManager.play();
 
     this.playerSeats.forEach((player) => {
       if (player.getBet()) {
@@ -190,7 +189,7 @@ export class Game {
 
         if (playersWithNoBalance.length) {
           new Modal(
-            `Players with names: "${playersWithNoBalance.map((item) => item.name).join(',')}" do not have enough balance. \n Do you want to top up your balances?`,
+            `Players with names: "${playersWithNoBalance.map((item) => item.name).join(',')}" do not have enough balance. \n Do you want to top up your balances? 💸`,
             () => {
               playersWithNoBalance.forEach((playerWithNoBalance) =>
                 playerWithNoBalance?.setBalance(1000),
