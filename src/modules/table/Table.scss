@@ -1,0 +1,81 @@
+@use '../../styles/mixins' as *;
+
+.table {
+  position: fixed;
+  justify-items: center;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    url('../../../public/assets/table-cover.jpg') center center / cover
+      no-repeat,
+    #024f01;
+  box-shadow:
+    inset 0 10px 30px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 1);
+  z-index: 1;
+
+  @media (min-width: 769px) {
+    border-radius: 0 0 40% 40%;
+    height: 80%;
+  }
+
+  .chip-area {
+    position: absolute;
+    bottom: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+
+    @media (min-width: 769px) {
+      bottom: -12%;
+    }
+  }
+
+  .dealer-area {
+    position: absolute;
+    top: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (min-width: 769px) {
+      top: 20%;
+    }
+  }
+
+  .player-seat-area {
+    position: absolute;
+    bottom: 28%;
+    left: 15%;
+    right: 0;
+    width: 70%;
+    height: 150px;
+    display: flex;
+    gap: 100px;
+    flex-direction: row;
+    justify-content: center;
+
+    @media (min-width: 769px) {
+      bottom: 10%;
+    }
+
+    &:nth-child(n + 6) {
+      display: none;
+    }
+
+    .card {
+      position: relative;
+      transition: transform 0.2s ease;
+
+      // Shift each card to the left by half the width of the previous one
+      &:nth-child(n) {
+        margin-left: -40px; // Half of 100px (card width)
+      }
+
+      &:first-child {
+        margin-left: 0; // First card stays in place
+      }
+    }
+  }
+}
