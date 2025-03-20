@@ -29,8 +29,6 @@ export class PlayerSeat extends AbstractPlayer {
 
   setBalance(amount: number): void {
     this.balance = amount;
-
-    this.updateBalanceDisplay();
   }
 
   getBalance(): number {

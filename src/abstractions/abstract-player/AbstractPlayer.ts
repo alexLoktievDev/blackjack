@@ -86,8 +86,7 @@ export abstract class AbstractPlayer {
     this.scoreElement.textContent = `Score: ${this.getScore()}`;
   }
 
-  setBet(amount: number): void {
-    this.betManager.placeBet(amount);
+  setBet(): void {
     if (this.betAmountElement) {
       this.betAmountElement.textContent = `Bet: $${this.betManager.getBet()}`;
     }

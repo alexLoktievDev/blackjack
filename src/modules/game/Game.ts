@@ -102,7 +102,7 @@ export class Game {
 
     const player = this.playerSeats[0];
     if (player.placeBet(amount)) {
-      player.setBet(amount);
+      player.setBet();
       this.betPlaced = true;
       this.updateDealButtonState();
     }

@@ -2,7 +2,7 @@ export class BetManager {
   protected bet: number = 0;
 
   placeBet(amount: number): boolean {
-    this.bet = amount;
+    this.bet += amount;
     return true;
   }
 
