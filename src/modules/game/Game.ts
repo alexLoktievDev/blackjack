@@ -172,10 +172,6 @@ export class Game {
     const playersWithNoBalance: PlayerSeat[] = [];
 
     this.playerSeats.forEach((player) => {
-      if (!player.getBalance()) {
-        playersWithNoBalance.push(player);
-      }
-
       if (player.getScore() === 21 && player.handAmount == 2) {
         message += `🎉 Blackjack! ${player.name} wins!\n`;
         player.winBet();
@@ -191,6 +187,10 @@ export class Game {
       } else {
         message += `Dealer wins!`;
         player.loseBet();
+      }
+
+      if (!player.getBalance()) {
+        playersWithNoBalance.push(player);
       }
     });
 
