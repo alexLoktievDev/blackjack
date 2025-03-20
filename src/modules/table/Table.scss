@@ -42,7 +42,7 @@
   }
 
   .player-seat-area {
-    @include absolute('auto', 0, 28%, 15%);
+    @include absolute('auto', 0, 32%, 15%);
     @include flex-center();
     width: 70%;
     height: 150px;
