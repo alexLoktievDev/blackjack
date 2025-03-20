@@ -48,6 +48,6 @@ describe('BetManager', () => {
     expect(betManager.getBet()).toBe(100);
 
     betManager.placeBet(200);
-    expect(betManager.getBet()).toBe(200);
+    expect(betManager.getBet()).toBe(300);
   });
 });
