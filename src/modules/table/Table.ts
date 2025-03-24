@@ -28,7 +28,7 @@ export class Table {
     // Create player area
     this.playerArea = UIElementFactory.createAndAppend(
       'div',
-      'player-seat-area', // Note: Fix typo if original had 'player-seat-area'
+      'player-seat-area',
       '',
       this.element,
     ) as HTMLDivElement;
