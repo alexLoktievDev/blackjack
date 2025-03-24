@@ -28,7 +28,7 @@ export class Deck {
 
     suits.forEach((suit) => {
       ranks.forEach((rank) => {
-        this.cards.push(new Card(rank, suit)); // ✅ No more TS2554!
+        this.cards.push(new Card(rank, suit));
       });
     });
   }
