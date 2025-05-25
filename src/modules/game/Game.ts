@@ -129,6 +129,11 @@ export class Game {
     this.audioManager.play();
     this.enableChips(false);
 
+    gtag('event', 'start_game_click', {
+      event_category: 'interaction',
+      event_label: 'Start Game Button Click',
+    });
+
     this.playerSeats.forEach((player) => {
       if (player.getBet()) {
         player.addCard(this.deck.draw(player.getInnerElement()));
@@ -154,12 +159,30 @@ export class Game {
     const player = this.playerSeats[0];
     player.addCard(this.deck.draw(player.getInnerElement()));
 
-    if (player.getScore() >= 21) {
+    const playerScore = player.getScore();
+
+    gtag('event', 'hit_click', {
+      event_category: 'interaction',
+      event_label: 'Hit Button click',
+      user_score: playerScore,
+    });
+
+    if (playerScore >= 21) {
       this.checkWinner();
     }
   }
 
   private handleStand(): void {
+    const player = this.playerSeats[0];
+
+    const playerScore = player.getScore();
+
+    gtag('event', 'stand_click', {
+      event_category: 'interaction',
+      event_label: 'Stand Button click',
+      user_score: playerScore,
+    });
+
     setTimeout(() => {
       this.dealer.play();
     }, 500);

@@ -34,6 +34,11 @@ export class Deck {
   }
 
   public shuffle(): void {
+    gtag('event', 'start_deck_shuffle', {
+      event_category: 'interaction',
+      event_label: 'Start Deck Shuffle',
+    });
+
     this.cards.sort(() => Math.random() - 0.5);
   }
 
